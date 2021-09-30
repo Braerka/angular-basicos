@@ -1,0 +1,45 @@
+<p>Listado de Heroes </p>
+
+
+<!--    ngIf es lo suficienteme inteligente para analizar que el string 
+        vacio o false o null es un false en la condicion
+
+        Para el else ponemos " ; else " seguido de una referencia local,
+        en nuestro ejemplo la llamaremos " noBorrado " y mas abajo indicamos
+        con ng-template lo que queremos mostrar en el caso del else
+-->
+<div *ngIf = " heroeBorrado; else noBorrado ">
+
+<!-- Otras formas de conseguir la condicion true para que se muestre el texto-->
+
+<!-- <div *ngIf = " heroeBorrado.length > 0 "> -->
+<!-- <div *ngIf = " heroeBorrado != '' "> -->
+
+    <h3>Heroe Borrado: <small>{{ heroeBorrado }}</small> </h3>
+</div>
+
+<!--    #noBorrado es una referencia local 
+        (Perteneciente a angular y no tiene contraparte en typescript)
+        esta referencia esta ligada al else del ngIf anterior
+-->
+<ng-template #noBorrado>
+    <h3> No ha borrado nada. </h3>
+</ng-template>
+
+
+
+
+
+
+<button (click) = "borrarHeroe()">
+    Borrar
+</button>
+
+<ul>
+<!-- ngFor va repitiendo el array "heroes" para mostrar toda la lista-->
+    <li *ngFor="let heroe of heroes; let i = index"> 
+        {{ i + 1 }} - {{heroe}} 
+    </li>
+</ul>
+
+
